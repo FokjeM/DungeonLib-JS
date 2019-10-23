@@ -1,0 +1,11 @@
+# .gitignore for the NHLStenden JS assignments
+
+##IDE / Dev env files##
+###Komodo IDE/Edit###
+*.komodoproject
+.komodotools
+
+###Notepad++###
+*.bak
+
+##Feel free to add anything I missed##
