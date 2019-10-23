@@ -14,7 +14,7 @@ class Equipment {
             throw new InvalidEquipmentException("type", `INVALID EQUIPMENT TYPE\r\nGiven: ${type}`);
         }
         if(name == ""){
-            throw new InvalidEquipmentException("name", `EQUIPMENT NEEDS A NAME\r\nSomething fancy is preferrable`);
+            throw new InvalidEquipmentException("name", `EQUIPMENT NEEDS A NAME\r\nSomething fancy is preferable`);
         }
         this.ATT_MODIFIER = attackStat;
         this.DEF_MODIFIER = defenseStat;
