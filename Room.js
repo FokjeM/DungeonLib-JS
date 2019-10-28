@@ -7,12 +7,16 @@ const NAMES = {
 
 class Room {
     constructor(chest, contents=[], exit=false) {
-        this.chest = chest;
+        this.chest = chest ? chest : Room.prototype.generateChest();
         this.contents = contents;
         this.hasExit = exit;
     }
 
-    generateChest() {
+    generateChest(equip) {
+        if(equip){
+            this.chest = new Chest(equip);
+            return;
+        }
         randType = Math.floor(Math.random() * TYPES.length);
         randATT = 0;
         randDEF = 0;
