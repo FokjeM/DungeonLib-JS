@@ -7,17 +7,9 @@ const NAMES = {
 
 class Room {
     constructor(chest, contents=[], exit=false) {
-        this.chest = chest ? chest : Room.prototype.generateChest();
+        this.chest = chest ? chest : Room.prototype.generateChest().bind(this);
         this.contents = contents;
         this.hasExit = exit;
-    }
-
-    get chest(){
-        return this.chest;
-    }
-
-    set chest(c){
-        this.chest = c;
     }
 
     generateChest(equip) {
@@ -37,7 +29,8 @@ class Room {
         // `eq` because it's short but not `e`, which is customarily for events
         eq = new Equipment(NAMES[TYPES[randType]][Math.floor(Math.random() * TYPES.length)], TYPES[randType], randATT, randDEF);
         //Make sure this function cannot be called over and over again from the console, to prevent abuse for perfect armor and weapons.
-        delete this.generateChest;
+        this.frozen = this instanceof Room ? Object.freeze(this) : null; //Prevent new chests from ever being added to objects we created, unless the prototype is changed.
+        delete this.frozen; // We needed this object just to store a value as JS classes don't like random values flying around
         return new Chest(eq);
     }
 }
