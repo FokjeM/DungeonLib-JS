@@ -1,9 +1,10 @@
 const NAMES = {
+    // Default to what any student knows. Memes.
     "weapon": ["Sword of HODOR", "Dagger of Shadows", "Fancy Toothpick"],
     "armor": ["Chestplate of Butter", "Rack of Lamb", "Latex Catsuit"],
     "helmet": ["Animal Skull", "Fine Mesh Sifter", "Itchy Beanie"],
     "shield": ["Cardboard Square", "Feather Pillow", "Bouquet of Flowers"]
-}
+};
 
 class Room {
     constructor(chest, contents=[], exit=false) {
@@ -12,9 +13,13 @@ class Room {
         this.hasExit = exit;
     }
 
+    get hasExit(){
+        return roomHasExit;
+    }
+
     generateChest(equip) {
         if(equip){
-            return new Chest(equip);
+            return new Chest(equip); // Allow the implementation to supply their own equipment. Use something default otherwise
         }
         randType = Math.floor(Math.random() * TYPES.length);
         randATT = 0;

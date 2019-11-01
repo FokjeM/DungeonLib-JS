@@ -1,9 +1,17 @@
 class Map {
     constructor(roomcount) {
+        this.COORDINATES = {"X": 0, "Y": 0}; // Start at the top-left room. Randomizing it is too much work
         this.ROOMS = {};
+
+        //Variables used in this constructor and then never again
         dimensions = Math.ceil(Math.sqrt(roomcount)); // Attempt a square layout for the rooms; This'll generate a few null values on keys, but JS memory allocation is bad anyway
         exit_created = false;
+        created = 0;
+
         for(i = 0; i < dimensions; i++){
+            if(created == roomcount){ // Don't create more rooms than requested, we might end up with a rectangle instead of a square
+                break;
+            }
             row = "Row" + i.toString();
             this.ROOMS[row] = [];
             for(c = 0; c < dimensions; c++){
@@ -18,8 +26,13 @@ class Map {
                         this.ROOMS[row][c] = new Room(null, [], false);
                     }
                 }
+                created++;
             }
         }
+    }
+
+    changeRoom(coordinates) {
+        return ROOMS["Row"+coordinates.X.toString()][coordinates.Y];
     }
 }
 
