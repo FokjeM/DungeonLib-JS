@@ -1,7 +1,7 @@
 const TYPES = ["weapon", "shield", "armor", "helmet"]; // There's a limited amount of options for equipment.
 
 function InvalidEquipmentException(cause, message) { // Include a custom error for invalid equipment
-        ERR = {
+        let ERR = {
             "Message": message,
             "cause": `Invalid parameter: ${cause}`
         };
@@ -10,7 +10,7 @@ function InvalidEquipmentException(cause, message) { // Include a custom error f
 
 class Equipment {
     constructor(name, type, attackStat=0, defenseStat=0) { // default to useless stuff, require a name and type to be given.
-        if(!TYPES.contains(type)){
+        if(!TYPES.includes(type)){
             // invalid type of equipment. NOPE
             throw new InvalidEquipmentException("type", `INVALID EQUIPMENT TYPE\r\nGiven: ${type}`);
         }

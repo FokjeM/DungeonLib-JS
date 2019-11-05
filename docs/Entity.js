@@ -1,5 +1,5 @@
 function InvalidEntityException(cause, message) { // Include a custom error for invalid equipment
-        ERR = {
+        let ERR = {
             "Message": message,
             "cause": `Invalid parameter: ${cause}`
         };
@@ -55,16 +55,16 @@ class Player extends Entity {
     }
 
     get ATT() {
-        total = this.ATT;
-        for(k in Object.keys(this.EQUIPPED)){
+        let total = this.ATT;
+        for(let k in Object.keys(this.EQUIPPED)){
             total += this.EQUIPPED[k].attack;
         }
         return total;
     }
 
     get DEF() {
-        total = this.DEF;
-        for(k in Object.keys(this.EQUIPPED)){
+        let total = this.DEF;
+        for(let k in Object.keys(this.EQUIPPED)){
             total += this.EQUIPPED[k].defense;
         }
         return total;

@@ -4,17 +4,17 @@ class Map {
         this.ROOMS = {};
 
         //Variables used in this constructor and then never again
-        dimensions = Math.ceil(Math.sqrt(roomcount)); // Attempt a square layout for the rooms; This'll generate a few null values on keys, but JS memory allocation is bad anyway
-        exit_created = false;
-        created = 0;
+        let dimensions = Math.ceil(Math.sqrt(roomcount)); // Attempt a square layout for the rooms; This'll generate a few null values on keys, but JS memory allocation is bad anyway
+        let exit_created = false;
+        let created = 0;
 
-        for(i = 0; i < dimensions; i++){
+        for(let i = 0; i < dimensions; i++){
             if(created == roomcount){ // Don't create more rooms than requested, we might end up with a rectangle instead of a square
                 break;
             }
-            row = "Row" + i.toString();
+            let row = "Row" + i.toString();
             this.ROOMS[row] = [];
-            for(c = 0; c < dimensions; c++){
+            for(let c = 0; c < dimensions; c++){
                 if(!exit_created ? (Math.random() <= 0.05 ? true : false) : false){ // Check for a randomly calculated exit.
                     this.ROOMS[row][c] = new Room(null, [], true);
                     exit_created = true;
