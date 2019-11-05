@@ -21,6 +21,7 @@ class Equipment {
         // Set the stats for the equipment
         this.ATT_MODIFIER = attackStat;
         this.DEF_MODIFIER = defenseStat;
+        Object.freeze(this); // Do not allow changing the equipment.
     }
     //Allowing getters for attack, defense and cosmetic status allows for very complex implementations as well as simple damage = EntityA.attack - EntityB.defense
     //Also prevents the usual overrides when people open the console and do Equipment.attack = 9001

@@ -6,7 +6,7 @@ class Floor {
 
     changeRoom(coordinates) {
         if(coordinates.X && coordinates.Y){
-            return this.MAP.changeRoom(coordinates);
+            return this.MAP.changeRoom(coordinates).bind(this.MAP);
         }
         else{
             // This allows a simple boolean check to exit on changeRoom in a clean manner
@@ -14,11 +14,16 @@ class Floor {
         }
     }
 
+    generateMap(roomcount=16) {
+        this.MAP = new Map(roomcount);
+        return this.MAP;
+    }
+
     /*
      * DO NOT CALL THIS METHOD IN VAIN
      * REQUIRES BINDING THE FUNCTION WITH floor.exit(room.roomHasExit).bind(floor);
     */
-    exit(roomExit){
+    exit(roomExit) {
         // Call upon the room's roomHasExit getter to make sure
         if(!roomExit){
             return;
