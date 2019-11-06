@@ -1,8 +1,17 @@
 * {
     margin: 0;
     padding: 0;
+    text-align: center;
+    background-color: #333333;
+    color: #cccccc;
 }
 
 #playingfield {
     background-image: url("resources/floor.svg") !important;
+    width: 95%;
+    height: 95%;
+    background-size: 60px;
+    background-repeat: repeat;
+    margin: 0 auto;
+    margin-top: 3px;
 }
