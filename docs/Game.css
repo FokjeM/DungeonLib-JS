@@ -1,0 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#playingfield {
+    background-image: url("resources/floor.svg") !important;
+}
