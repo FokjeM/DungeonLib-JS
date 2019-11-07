@@ -11,8 +11,11 @@
     height: 95%;
     margin: 0 auto;
     margin-top: 3px;
+    background-color: transparent;
+    background-size: auto 15%;
+    background-repeat: repeat;
 }
 
 .tile {
-    background-image: url("resources/floor.svg") !important;
+    background-color: transparent;
 }

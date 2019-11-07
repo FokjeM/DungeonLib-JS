@@ -4,7 +4,7 @@ class Map {
         this.ROOMS = {};
 
         //Variables used in this constructor and then never again
-        let dimensions = Math.ceil(Math.sqrt(roomcount)); // Attempt a square layout for the rooms; This'll generate a few null values on keys, but JS memory allocation is bad anyway
+        let dimensions = Math.ceil(Math.sqrt(roomcount)); // Force a square layout for the rooms
         let exit_created = false;
         let created = 0;
 
@@ -19,7 +19,7 @@ class Map {
                     this.ROOMS[row][c] = new Room(null, [], true);
                     exit_created = true;
                 }else{
-                    if(i == dimensions && c == dimensions && !exit_created){ // If an exit hasn't been created by the time we reach the last room, force one
+                    if(i == dimensions-1 && c == dimensions-1 && !exit_created){ // If an exit hasn't been created by the time we reach the last room, force one
                         this.ROOMS[row][c] = new Room(null, [], true);
                         exit_created = true;
                     } else { // We already have an exit or we're not at the last room and didn't get a random one yet

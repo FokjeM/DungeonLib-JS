@@ -18,8 +18,13 @@ class Entity {
             throw new InvalidEntityException("Not an entity", "You're trying to attack something that isn't attackable!");
         }
         //Vulnerable to strong armor, which is the intended purpose.
-        ent.lives -= ((this.ATT >= ent.DEF) ? this.ATT - this.DEF : 0); // inline if prevents healing if ent.DEF > this.ATT
+        ent.lives -= ((this.ATT_STAT >= ent.ATT_STAT) ? ent.ATT_STAT - this.DEF_STAT : 0); // inline if prevents healing if ent.DEF > this.ATT
         return;
+    }
+    
+    move(direction, offset){
+        this.roomPos[direction] += offset > 0 ? function (){this.roomPos[direction] += offset;}() : null;
+        return this.roomPos;
     }
 }
 
@@ -54,7 +59,7 @@ class Player extends Entity {
         Object.seal(this.EQUIPPED); // Prevent changin it, allow values to be changed.
     }
 
-    get ATT() {
+    get ATT_STAT() {
         let total = this.ATT;
         for(let k in Object.keys(this.EQUIPPED)){
             total += this.EQUIPPED[k].attack;
@@ -62,7 +67,7 @@ class Player extends Entity {
         return total;
     }
 
-    get DEF() {
+    get DEF_STAT() {
         let total = this.DEF;
         for(let k in Object.keys(this.EQUIPPED)){
             total += this.EQUIPPED[k].defense;

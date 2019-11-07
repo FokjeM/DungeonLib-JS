@@ -2,19 +2,25 @@
 <html>
     <head>
         <title>Riven's generic Dungeon Crawler</title>
+        <meta charset="UTF-8">
         <link type="text/css" rel="stylesheet" href="Game.css" />
-        <script src="../Equipment.js"></script>
-        <script src="../Chest.js"></script>
-        <script src="../Room.js"></script>
-        <script src="../Map.js"></script>
-        <script src="../Entity.js"></script>
-        <script src="../Floor.js"></script>
+        <script type="text/javascript" src="Equipment.js"></script>
+        <script type="text/javascript" src="Chest.js"></script>
+        <script type="text/javascript" src="Room.js"></script>
+        <script type="text/javascript" src="Map.js"></script>
+        <script type="text/javascript" src="Entity.js"></script>
+        <script type="text/javascript" src="Floor.js"></script>
     </head>
     <body>
         <p>All imagery used in this example implementation came from <a href="https://game-icons.net/" title="Game Icons">Game Icons</a>, licensed under Creative Commons.
         They did an amazing job with these, thanks for the free stuff! <a href="resources/index.html" title="All of the attributions with links">Attribution list</a></p>
         <div id="playingfield">
+            <p id="mfd">
+                Select an amount of rooms and start playing!
+                <input type="number" value="9" min="4" max="30" id="roomcount" /><button onclick="init();">Play</button>
+            </p>
             <!-- This is gonna be filled with tiny divs -->
         </div>
+        <script type="text/javascript" src="Game.js"></script>
     </body>
 </html>
