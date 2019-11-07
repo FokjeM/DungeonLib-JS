@@ -1,7 +1,7 @@
-# Attributions #
+# Attributions
 These images all came from somewhere. Looking for free to use things I stumbled upon [Game Icons](https://game-icons.net/ "Link to their homepage").
 
-## Used imagery ##
+## Used imagery
 There were only a few images used for the example implementation.  
 According to any version of the Creative Commons license, I'll attribute the artists here with a link to both the original work and the license.
 
