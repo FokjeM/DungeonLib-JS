@@ -1,7 +1,6 @@
 class Floor {
     //Decidec to cut the array of rooms from here
     constructor(roomcount=16) { // default to a 4x4 map
-        console.log(roomcount);
         this.MAP = new Map(roomcount);
     }
 

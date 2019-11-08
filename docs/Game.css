@@ -7,15 +7,29 @@
 }
 
 #playingfield {
-    width: 95%;
-    height: 95%;
+    width: 45%;
+    height: 90%;
     margin: 0 auto;
     margin-top: 3px;
     background-color: transparent;
-    background-size: auto 15%;
+    background-size: auto 16.5%; /* Looks close enough on a 1920x1080 screen */
     background-repeat: repeat;
 }
 
+img {
+    max-width: 20%;
+    max-height: 20%;
+}
+
+.entity {
+    display: block;
+    position: static;
+}
+
 .tile {
+    display: block;
+    float: left;
     background-color: transparent;
+    border: 2px dashed blue;
+    display: inline-block;
 }

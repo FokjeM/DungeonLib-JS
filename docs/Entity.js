@@ -8,7 +8,7 @@ function InvalidEntityException(cause, message) { // Include a custom error for 
 
 class Entity {
     // This creates the option of using Entity to create a more generic attackable
-    constructor(life=1, pos={"X": Math.floor(Math.random() * 20), "Y": Math.floor(Math.random() * 20)}) { // Initialize at something, if nothing is given, we'll randomize stuff
+    constructor(life=1, pos={"X": Math.floor(Math.random() * 5), "Y": Math.floor(Math.random() * 5)}) { // Initialize at something, if nothing is given, we'll randomize stuff
         this.lives = life;
         this.roomPos = pos;
     }
@@ -23,7 +23,9 @@ class Entity {
     }
     
     move(direction, offset){
-        this.roomPos[direction] += offset > 0 ? function (){this.roomPos[direction] += offset;}() : null;
+        console.log(direction);
+        console.log(offset);
+        (this.roomPos[direction] + offset) >= 0 ? function (){this.roomPos[direction] += offset;}.bind(this)() : null; // This works, don't question the inline if and IDE warnings
         return this.roomPos;
     }
 }
@@ -43,7 +45,7 @@ class Monster extends Entity {
 class Player extends Entity {
     constructor(pos, lives=15, attack=3, defense=5) { // Make sure the player can get a weapon without dying on a default monster
         //There is a possibility RNG creates only useless weapons; good luck killing monsters then!
-        if(!pos){
+        if(pos){
             super(lives, pos);
         }else{
             super(lives);
