@@ -23,8 +23,6 @@ class Entity {
     }
     
     move(direction, offset){
-        console.log(direction);
-        console.log(offset);
         (this.roomPos[direction] + offset) >= 0 ? function (){this.roomPos[direction] += offset;}.bind(this)() : null; // This works, don't question the inline if and IDE warnings
         return this.roomPos;
     }

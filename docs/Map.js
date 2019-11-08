@@ -32,7 +32,7 @@ class Map {
     }
 
     changeRoom(coordinates) {
-        return ROOMS["Row"+coordinates.X.toString()][coordinates.Y];
+        return this.ROOMS["Row"+coordinates.X.toString()][coordinates.Y];
     }
 }
 

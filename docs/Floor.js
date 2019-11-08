@@ -5,8 +5,8 @@ class Floor {
     }
 
     changeRoom(coordinates) {
-        if(coordinates.X && coordinates.Y){
-            return this.MAP.changeRoom.bind(this.MAP, coordinates);
+        if(coordinates.X >= 0 && coordinates.Y >= 0){
+            return this.MAP.changeRoom.bind(this.MAP, coordinates)();
         }
         else{
             // This allows a simple boolean check to exit on changeRoom in a clean manner

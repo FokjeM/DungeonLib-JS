@@ -6,30 +6,45 @@
     color: #cccccc;
 }
 
+#roomcount {
+    margin-top: 1%;
+    margin-right: 5%;
+}
+
 #playingfield {
-    width: 45%;
-    height: 90%;
-    margin: 0 auto;
-    margin-top: 3px;
+    /* Create a playing field of about 1:1 ratio */
+    width: 35%;
+    height: 72.5%;
+    margin: 0 auto; /* Centering the element */
+    margin-top: 1%;
     background-color: transparent;
     background-size: auto 16.5%; /* Looks close enough on a 1920x1080 screen */
     background-repeat: repeat;
 }
 
 img {
-    max-width: 20%;
-    max-height: 20%;
+    width: 20%;
+    height: 20%;
+}
+
+.chest {
+    display: block;
+    position: absolute;
+    left: 60%;
+    top: 60%;
 }
 
 .entity {
     display: block;
-    position: static;
+    position: absolute;
 }
 
-.tile {
+.room {
     display: block;
+    position: relative;
     float: left;
     background-color: transparent;
     border: 2px dashed blue;
     display: inline-block;
+    background-image: url(resources/floor.svg);
 }
