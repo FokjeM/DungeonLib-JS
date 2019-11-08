@@ -1,13 +1,12 @@
 class Floor {
     //Decidec to cut the array of rooms from here
     constructor(roomcount=16) { // default to a 4x4 map
-        console.log(roomcount);
         this.MAP = new Map(roomcount);
     }
 
     changeRoom(coordinates) {
-        if(coordinates.X && coordinates.Y){
-            return this.MAP.changeRoom.bind(this.MAP, coordinates);
+        if(coordinates.X >= 0 && coordinates.Y >= 0){
+            return this.MAP.changeRoom.bind(this.MAP, coordinates)();
         }
         else{
             // This allows a simple boolean check to exit on changeRoom in a clean manner
@@ -31,6 +30,5 @@ class Floor {
         }
         // pure memory management. Prevent lingering objects and destroy remaining data
         delete this.MAP;
-        delete this; //VERY definitive
     }
 }

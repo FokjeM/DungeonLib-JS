@@ -9,6 +9,9 @@ class Chest {
     }
 
     empty() {
+        if(this.unlocked){
+            return false;
+        }
         this.unlocked = true;
         let r = this.reward;
         this.reward = null;

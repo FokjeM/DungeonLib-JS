@@ -8,7 +8,7 @@ function InvalidEntityException(cause, message) { // Include a custom error for 
 
 class Entity {
     // This creates the option of using Entity to create a more generic attackable
-    constructor(life=1, pos={"X": Math.floor(Math.random() * 20), "Y": Math.floor(Math.random() * 20)}) { // Initialize at something, if nothing is given, we'll randomize stuff
+    constructor(life=1, pos={"X": Math.floor(Math.random() * 5), "Y": Math.floor(Math.random() * 5)}) { // Initialize at something, if nothing is given, we'll randomize stuff
         this.lives = life;
         this.roomPos = pos;
     }
@@ -17,15 +17,19 @@ class Entity {
         if(!(ent instanceof Entity)){
             throw new InvalidEntityException("Not an entity", "You're trying to attack something that isn't attackable!");
         }
-        //Vulnerable to strong armor, which is the intended purpose.
-        ent.lives -= ((this.ATT >= ent.DEF) ? this.ATT - this.DEF : 0); // inline if prevents healing if ent.DEF > this.ATT
-        return;
+        ent.lives += ((this.ATT_STAT >= ent.DEF_STAT) ? ent.DEF_STAT - this.ATT_STAT : 0); // inline if prevents healing if ent.DEF > this.ATT
+        return ent.lives;
+    }
+    
+    move(direction, offset){
+        (this.roomPos[direction] + offset) >= 0 ? function (){this.roomPos[direction] += offset;}.bind(this)() : null; // This works, don't question the inline if and IDE warnings
+        return this.roomPos;
     }
 }
 
 class Monster extends Entity {
     constructor(pos, lives=10, attack=3, defense=3) {
-        if(!pos){
+        if(pos){
             super(lives, pos);
         }else{
             super(lives);
@@ -33,12 +37,19 @@ class Monster extends Entity {
         this.ATT = attack;
         this.DEF = defense;
     }
+    
+    get DEF_STAT() {
+        return this.DEF;
+    }
+    get ATT_STAT(){
+        return this.ATT;
+    }
 }
 
 class Player extends Entity {
-    constructor(pos, lives=15, attack=3, defense=5) { // Make sure the player can get a weapon without dying on a default monster
+    constructor(pos, lives=15, attack=4, defense=2) { // Make sure the player can get a weapon without dying on a default monster
         //There is a possibility RNG creates only useless weapons; good luck killing monsters then!
-        if(!pos){
+        if(pos){
             super(lives, pos);
         }else{
             super(lives);
@@ -51,21 +62,21 @@ class Player extends Entity {
             "armor": new Equipment("none", "armor", 0, 0),
             "helmet": new Equipment("none", "helmet", 0, 0)
         };
-        Object.seal(this.EQUIPPED); // Prevent changin it, allow values to be changed.
+        Object.seal(this.EQUIPPED); // Prevent changing it, allow values to be changed.
     }
 
-    get ATT() {
+    get ATT_STAT() {
         let total = this.ATT;
         for(let k in Object.keys(this.EQUIPPED)){
-            total += this.EQUIPPED[k].attack;
+            total += this.EQUIPPED[k] ? this.EQUIPPED[k].attack : 0;
         }
         return total;
     }
 
-    get DEF() {
+    get DEF_STAT() {
         let total = this.DEF;
         for(let k in Object.keys(this.EQUIPPED)){
-            total += this.EQUIPPED[k].defense;
+            total += this.EQUIPPED[k] ? this.EQUIPPED[k].defense : 0;
         }
         return total;
     }

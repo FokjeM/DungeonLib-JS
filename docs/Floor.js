@@ -30,6 +30,5 @@ class Floor {
         }
         // pure memory management. Prevent lingering objects and destroy remaining data
         delete this.MAP;
-        delete this; //VERY definitive
     }
 }
